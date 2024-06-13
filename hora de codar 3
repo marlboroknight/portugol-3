@@ -1,0 +1,18 @@
+// Função para ler e validar o segundo valor
+function lerSegundoValor() {
+    let valor;
+    do {
+        valor = parseFloat(prompt("Digite o segundo valor (deve ser maior que zero):"));
+    } while (valor <= 0);
+    return valor;
+}
+
+// Ler o primeiro valor informado pelo usuário
+let valor1 = parseFloat(prompt("Digite o primeiro valor:"));
+
+// Ler e validar o segundo valor
+let valor2 = lerSegundoValor();
+
+// Calcular e imprimir o resultado da divisão
+let resultado = valor1 / valor2;
+alert(`O resultado da divisão de ${valor1} por ${valor2} é ${resultado}`);
