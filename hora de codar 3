@@ -1,18 +1,345 @@
-// Função para ler e validar o segundo valor
-function lerSegundoValor() {
-    let valor;
-    do {
-        valor = parseFloat(prompt("Digite o segundo valor (deve ser maior que zero):"));
-    } while (valor <= 0);
-    return valor;
-}
+1.Escreva um algoritmo para ler 2 valores informados pelo usuário e se o segundo valor informado for igual ou menor que ZERO, deve ser lido um novo valor. Ou seja, para o segundo valor não pode ser aceito o valor zero, nem um valor negativo.  O seu programa deve imprimir o resultado da divisão do primeiro valor lido pelo segundo valor.
 
-// Ler o primeiro valor informado pelo usuário
-let valor1 = parseFloat(prompt("Digite o primeiro valor:"));
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Divisão</title>
+    <script>
+        function realizarDivisao() {
+            let valor1 = parseFloat(prompt("Digite o primeiro valor:"));
+            let valor2 = parseFloat(prompt("Digite o segundo valor (não pode ser zero ou negativo):"));
 
-// Ler e validar o segundo valor
-let valor2 = lerSegundoValor();
+            while (valor2 <= 0) {
+                valor2 = parseFloat(prompt("Valor inválido. Digite um segundo valor maior que zero:"));
+            }
 
-// Calcular e imprimir o resultado da divisão
-let resultado = valor1 / valor2;
-alert(`O resultado da divisão de ${valor1} por ${valor2} é ${resultado}`);
+            let resultado = valor1 / valor2;
+            document.write("O resultado da divisão é: " + resultado);
+        }
+    </script>
+</head>
+<body onload="realizarDivisao()">
+</body>
+</html>
+
+///////////////////////////////
+
+2.Crie uma bomba relógio (usando somente código - para deixar claro!) cuja contagem regressiva vá de 30 a 0. Utilize "document.write" para escrever em tela e no final da repetição escreva "EXPLOSÃO".
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bomba Relógio</title>
+    <script>
+        function iniciarContagem() {
+            let contagem = 30;
+
+            function contar() {
+                if (contagem >= 0) {
+                    document.write(contagem + "<br>");
+                    contagem--;
+                    setTimeout(contar, 1000); // Chama a função contar novamente após 1 segundo
+                } else {
+                    document.write("EXPLOSÃO");
+                }
+            }
+
+            contar();
+        }
+    </script>
+</head>
+<body onload="iniciarContagem()">
+</body>
+</html>
+
+///////////////////////
+
+3.Escreva um algoritmo para imprimir os números de 1 (inclusive) a 10 (inclusive) em ordem decrescente.
+Exemplo: 10, 9, 8, 7, 6, 5, 4, 3, 2, 1.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ordem Decrescente</title>
+    <script>
+        function imprimirDecrescente() {
+            for (let i = 10; i >= 1; i--) {
+                document.write(i + "<br>");
+            }
+        }
+    </script>
+</head>
+<body onload="imprimirDecrescente()">
+</body>
+</html>
+
+//////////////////////////////////////////
+
+4. Faça um algoritmo que calcule e escreva a média aritmética dos números inteiros entre 15 (inclusive) e 100 (inclusive).
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média Aritmética</title>
+    <script>
+        function calcularMedia() {
+            let soma = 0;
+            let contador = 0;
+
+            for (let i = 15; i <= 100; i++) {
+                soma += i;
+                contador++;
+            }
+
+            let media = soma / contador;
+            document.write("A média aritmética dos números inteiros entre 15 e 100 é: " + media);
+        }
+    </script>
+</head>
+<body onload="calcularMedia()">
+</body>
+</html>
+
+///////////////////////////////
+
+5.Faça um algoritmo que calcule e escreva a média aritmética dos dois números inteiros informados pelo usuário e todos os números inteiros entre eles. Considere que o primeiro sempre será menor que o segundo.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média Aritmética de Intervalo</title>
+    <script>
+        function calcularMedia() {
+            let num1 = parseInt(prompt("Digite o primeiro número (menor):"));
+            let num2 = parseInt(prompt("Digite o segundo número (maior):"));
+
+            let soma = 0;
+            let contador = 0;
+
+            for (let i = num1; i <= num2; i++) {
+                soma += i;
+                contador++;
+            }
+
+            let media = soma / contador;
+            document.write("A média aritmética dos números inteiros entre " + num1 + " e " + num2 + " é: " + media);
+        }
+    </script>
+</head>
+<body onload="calcularMedia()">
+</body>
+</html>
+
+/////////////////////////////////////////
+
+6. Escreva um programa para ler 2 notas de um aluno, calcular e imprimir a média final. Considere que a nota de aprovação é 9,5. Logo após escrever a mensagem "Calcular a média de outro aluno Sim/Não?" e solicitar um resposta. Se a resposta for "S", o programa deve ser executado novamente, caso contrário deve ser encerrado exibindo a quantidade de alunos aprovados.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média do Aluno</title>
+    <script>
+        function calcularMediaAlunos() {
+            let alunosAprovados = 0;
+            let continuar = true;
+
+            while (continuar) {
+                let nota1 = parseFloat(prompt("Digite a primeira nota do aluno:"));
+                let nota2 = parseFloat(prompt("Digite a segunda nota do aluno:"));
+
+                let media = (nota1 + nota2) / 2;
+
+                if (media >= 9.5) {
+                    alert("Aluno aprovado com média: " + media);
+                    alunosAprovados++;
+                } else {
+                    alert("Aluno reprovado com média: " + media);
+                }
+
+                let resposta = prompt("Calcular a média de outro aluno? Sim/Não?");
+                if (resposta.toLowerCase() !== "sim" && resposta.toLowerCase() !== "s") {
+                    continuar = false;
+                }
+            }
+
+            alert("Quantidade de alunos aprovados: " + alunosAprovados);
+        }
+    </script>
+</head>
+<body onload="calcularMediaAlunos()">
+</body>
+</html>
+
+////////////////////////////////
+
+7. Escreva um algoritmo para ler as notas de avaliações de um aluno, calcule e imprima a média (simples) desse aluno. Só devem ser aceitos valores válidos durante a leitura (0 a 10) para cada nota. São 6 notas ao total.
+Caso o valor informado para qualquer uma das notas esteja fora do limite estabelecido, deve ser solicitado um novo valor ao usuário. 
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Média de 6 Notas</title>
+    <script>
+        function calcularMedia() {
+            let notas = [];
+            let totalNotas = 6;
+
+            function lerNota() {
+                let nota;
+                while (true) {
+                    nota = parseFloat(prompt("Digite uma nota (0 a 10):"));
+                    if (nota >= 0 && nota <= 10) {
+                        return nota;
+                    } else {
+                        alert("Valor inválido. Por favor, insira uma nota entre 0 e 10.");
+                    }
+                }
+            }
+
+            for (let i = 0; i < totalNotas; i++) {
+                notas.push(lerNota());
+            }
+
+            let soma = notas.reduce((a, b) => a + b, 0);
+            let media = soma / totalNotas;
+
+            document.write("A média das notas do aluno é: " + media.toFixed(2));
+        }
+    </script>
+</head>
+<body onload="calcularMedia()">
+</body>
+</html>
+
+/////////////////////////////////
+
+8. Ler um valor N e imprimir todos os valores inteiros entre 1 (inclusive) e N (inclusive). Considere que o N será sempre maior que ZERO.
+N  é um valor informado pelo usuário.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valores de 1 a N</title>
+    <script>
+        function imprimirValores() {
+            let N = parseInt(prompt("Digite um valor inteiro maior que zero:"));
+
+            if (isNaN(N) || N <= 0) {
+                document.write("Por favor, insira um valor inteiro maior que zero.");
+                return;
+            }
+
+            for (let i = 1; i <= N; i++) {
+                document.write(i + "<br>");
+            }
+        }
+    </script>
+</head>
+<body onload="imprimirValores()">
+</body>
+</html>
+
+////////////////////////////////////////
+
+9. Escreva um algoritmo para imprimir os 10 primeiros números inteiros maiores que 100.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>10 Primeiros Maiores que 100</title>
+    <script>
+        function imprimirNumeros() {
+            for (let i = 101; i <= 110; i++) {
+                document.write(i + "<br>");
+            }
+        }
+    </script>
+</head>
+<body onload="imprimirNumeros()">
+</body>
+</html>
+
+/////////////////////////////////////////////
+
+10. Escreva um programa para imprimir todas as tabuadas de 1 a N. N será informado pelo usuário.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabuadas de 1 a N</title>
+    <script>
+        function imprimirTabuadas() {
+            let N = parseInt(prompt("Digite um valor inteiro maior que zero:"));
+
+            if (isNaN(N) || N <= 0) {
+                document.write("Por favor, insira um valor inteiro maior que zero.");
+                return;
+            }
+
+            for (let i = 1; i <= N; i++) {
+                document.write("<h3>Tabuada do " + i + ":</h3>");
+                for (let j = 1; j <= 10; j++) {
+                    document.write(i + " x " + j + " = " + (i * j) + "<br>");
+                }
+            }
+        }
+    </script>
+</head>
+<body onload="imprimirTabuadas()">
+</body>
+</html>
+
+////////////////////////////////////////////
+
+11. Escreva um programa em que o usuário informe 10 valores e escreva quantos desses valores lidos estão entre os números 24 e 42 (incluindo os valores 24 e 42) e quantos deles estão fora deste intervalo.
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contar Valores no Intervalo</title>
+    <script>
+        function contarValores() {
+            let dentroDoIntervalo = 0;
+            let foraDoIntervalo = 0;
+
+            for (let i = 0; i < 10; i++) {
+                let valor = parseFloat(prompt("Digite um valor:"));
+                if (valor >= 24 && valor <= 42) {
+                    dentroDoIntervalo++;
+                } else {
+                    foraDoIntervalo++;
+                }
+            }
+
+            document.write("Valores dentro do intervalo [24, 42]: " + dentroDoIntervalo + "<br>");
+            document.write("Valores fora do intervalo [24, 42]: " + foraDoIntervalo + "<br>");
+        }
+    </script>
+</head>
+<body onload="contarValores()">
+</body>
+</html>
+
+///////////////////////////////////////////////////
